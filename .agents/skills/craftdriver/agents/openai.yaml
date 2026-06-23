@@ -1,0 +1,4 @@
+interface:
+  display_name: "Craftdriver Browser Testing"
+  short_description: "Build and verify real-browser Craftdriver tests."
+  default_prompt: "Use Craftdriver to add or verify real-browser tests for this application."

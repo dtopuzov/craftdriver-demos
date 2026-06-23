@@ -1,0 +1,55 @@
+{
+  "name": "mathematics-examination-system",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.12.1",
+  "engines": {
+    "node": ">=22.0.0",
+    "pnpm": ">=10.0.0"
+  },
+  "scripts": {
+    "dev": "node --env-file-if-exists=.env scripts/dev.mjs",
+    "build": "pnpm --filter @exam/contracts build && pnpm --filter @exam/grading build && pnpm --filter api build && pnpm --filter web build",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc --noEmit -p tsconfig.json && pnpm --filter @exam/contracts build && pnpm --filter @exam/grading build && pnpm -r typecheck",
+    "test:unit": "pnpm --filter @exam/grading test",
+    "test:api": "pnpm --filter @exam/contracts build && pnpm --filter @exam/grading build && pnpm --filter api test",
+    "test:web": "pnpm --filter web test",
+    "test": "pnpm run test:unit && pnpm run test:api && pnpm run test:web",
+    "db:up": "docker compose up -d db",
+    "db:down": "docker compose down",
+    "db:migrate": "tsx --env-file-if-exists=.env database/migrate.ts",
+    "db:seed": "tsx --env-file-if-exists=.env database/seed.ts",
+    "db:reset": "node scripts/db-reset.mjs",
+    "test:e2e": "vitest run --config tests/e2e/vitest.config.ts"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.30.0",
+    "@types/node": "^22.15.30",
+    "@types/react": "^19.1.6",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react": "^4.5.2",
+    "concurrently": "^9.1.2",
+    "craftdriver": "^0.2.1",
+    "drizzle-kit": "^0.31.4",
+    "eslint": "^9.30.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^16.2.0",
+    "prettier": "^3.5.3",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.35.0",
+    "vite": "^6.3.5",
+    "vitest": "^3.2.4"
+  },
+  "dependencies": {
+    "argon2": "^0.43.0",
+    "drizzle-orm": "^0.44.7",
+    "postgres": "^3.4.7"
+  }
+}

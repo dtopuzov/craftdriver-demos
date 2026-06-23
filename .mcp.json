@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "craftdriver": {
+      "type": "local",
+      "command": "pnpm",
+      "args": ["exec", "craftdriver", "mcp"],
+      "tools": ["*"]
+    }
+  }
+}
