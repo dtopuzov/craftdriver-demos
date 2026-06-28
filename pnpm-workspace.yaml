@@ -1,0 +1,13 @@
+packages:
+  - apps/*
+  - packages/*
+
+allowBuilds:
+  esbuild: true
+  argon2: true
+
+# Vite and Vitest require esbuild's platform-specific binary. Keeping this explicit
+# preserves pnpm's secure default while allowing the known, pinned dependency to build.
+onlyBuiltDependencies:
+  - esbuild
+  - argon2
